@@ -9,29 +9,8 @@ let data = ["", "", "", "", "", "", "", "", ""];
 const TicTacToe = () => {
     let [count, setCount] = React.useState(0);
     let [lock, setLock] = React.useState(false);
-    let titleRef = React.useRef(null);
 
     let winBanner = document.querySelector(".winBanner");
-
-
-    const toggle =(e, num) => {
-        if(lock){
-            return 0;
-        }
-        if(count % 2 === 0){
-            e.target.innerHTML = `<img src=${x} alt="circle" />`;
-            data[num] = "x";
-            setCount(++count);
-            winBanner.innerHTML = "O Turn";
-    }
-    else{
-        e.target.innerHTML = `<img src=${circle} alt="circle" />`;
-        data[num] = "o";
-        setCount(++count);
-        winBanner.innerHTML = "X Turn";
-    }
-    checkWinner();
-}
 
 const checkWinner = () => {
     if(data[0] === data[1] && data[1] === data[2] && data[2] !== ""){
@@ -87,10 +66,29 @@ const reset = () => {
 
 }
 
+const toggle =(e, num) => {
+        if(lock){
+            return 0;
+        }
+        if(count % 2 === 0){
+            e.target.innerHTML = `<img src=${x} alt="x" />`;
+            data[num] = "x";
+            setCount(++count);
+            winBanner.innerHTML = "O Turn";
+    }
+    else{
+        e.target.innerHTML = `<img src=${circle} alt="circle" />`;
+        data[num] = "o";
+        setCount(++count);
+        winBanner.innerHTML = "X Turn";
+    }
+    checkWinner();
+}
+
 
     return (
     <div className="container">
-        <h1 className="title" useRef={titleRef}>Tic Tac Toe</h1>
+        <h1 className="title">Tic Tac Toe</h1>
         <h2 className="winBanner">X Turn</h2>
         <div className="gameBoard">
             <div className="row1">
