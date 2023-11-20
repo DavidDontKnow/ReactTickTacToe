@@ -11,6 +11,7 @@ const TicTacToe = () => {
     let [lock, setLock] = React.useState(false);
 
     let winBanner = document.querySelector(".winBanner");
+    
 
 const checkWinner = () => {
     if(data[0] === data[1] && data[1] === data[2] && data[2] !== ""){
@@ -58,7 +59,7 @@ const reset = () => {
     setLock(false);
     data = ["", "", "", "", "", "", "", "", ""];
     setCount(0);
-    winBanner.innerHTML = "X Turn";
+    winBanner.innerHTML = "";
     const boxes = document.querySelectorAll(".boxes");
     boxes.forEach((box) => {
         box.innerHTML = "";
@@ -74,13 +75,11 @@ const toggle =(e, num) => {
             e.target.innerHTML = `<img src=${x} alt="x" />`;
             data[num] = "x";
             setCount(++count);
-            winBanner.innerHTML = "O Turn";
     }
     else{
         e.target.innerHTML = `<img src=${circle} alt="circle" />`;
         data[num] = "o";
         setCount(++count);
-        winBanner.innerHTML = "X Turn";
     }
     checkWinner();
 }
@@ -89,7 +88,7 @@ const toggle =(e, num) => {
     return (
     <div className="container">
         <h1 className="title">Tic Tac Toe</h1>
-        <h2 className="winBanner">X Turn</h2>
+        <h2 className="winBanner"></h2>
         <div className="gameBoard">
             <div className="row1">
                 <div className="boxes" onClick={(e)=>{toggle(e,0)}}></div>
